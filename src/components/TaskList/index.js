@@ -6,7 +6,14 @@ import TaskItem from "../TaskItem";
 
 class TaskList extends Component {
   render() {
-    let { tasks, classes, status, index, onClickEdit } = this.props;
+    let {
+      tasks,
+      classes,
+      status,
+      index,
+      onClickEdit,
+      onClickDelete,
+    } = this.props;
     return (
       <Grid item xs={12} md={4} key={index}>
         <div className={classes.taskboard}>{status.label}</div>
@@ -19,6 +26,7 @@ class TaskList extends Component {
                 key={index}
                 index={index}
                 onClickEdit={onClickEdit}
+                onClickDelete={onClickDelete}
               />
             );
           })}

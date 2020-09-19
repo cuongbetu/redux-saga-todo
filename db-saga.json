@@ -1,52 +1,25 @@
 {
   "tasks": [
     {
-      "title": "Sinh tố",
-      "description": "Sinh tố bơ",
-      "status": 1,
-      "id": 2
-    },
-    {
-      "title": "Đá xay",
-      "description": "Matcha đá xay",
-      "status": 2,
-      "id": 3
-    },
-    {
-      "title": "Sinh tố",
-      "description": "Sinh tố xoài",
-      "status": 1,
-      "id": 4
-    },
-    {
-      "title": "Cafe Helio",
-      "description": "Trà Đào Cam Xả",
-      "status": 3,
-      "id": 5
-    },
-    {
-      "title": "Trà lipton",
-      "description": "Lipton đá",
-      "status": 3,
-      "id": 6
-    },
-    {
-      "title": "Đá xay",
-      "description": "Cookie đá xay",
-      "status": 2,
       "id": 7
     },
     {
-      "title": "Trà nóng",
-      "description": "Trà lipton nóng và trà gừng nóng",
+      "title": "Trà",
+      "description": "Trà đào cam xả",
       "status": 1,
       "id": 8
     },
     {
       "title": "Cafe",
-      "description": "Americano",
-      "status": 1,
-      "id": 9
+      "description": "Capuchino",
+      "status": 2,
+      "id": 10
+    },
+    {
+      "title": "Sinh tố",
+      "description": "Sinh tố bơ",
+      "status": 3,
+      "id": 11
     }
   ]
 }

@@ -7,7 +7,7 @@ import {
   select,
 } from "redux-saga/effects";
 import * as taskTypes from "./../constant/task";
-import { getListTask, addTask, editTask } from "./../apis/task";
+import { getListTask, addTask, editTask, deleteTask } from "./../apis/task";
 import {
   fetchListTaskSuccess,
   fetchListTaskFail,
@@ -16,6 +16,8 @@ import {
   fetchListTask,
   updateTaskSuccess,
   updateTaskFail,
+  deleteTaskSuccess,
+  deleteTaskFail,
 } from "./../actions/task";
 import { showGlobalLoading, hideGlobalLoading } from "./../actions/ui";
 import { hideModal } from "./../actions/modal";
@@ -84,11 +86,24 @@ function* updateTaskSaga(action) {
   yield put(hideGlobalLoading());
 }
 
+function* deleteTaskSaga(action) {
+  yield put(showGlobalLoading());
+  try {
+    yield call(deleteTask, action.payload.id);
+    yield put(deleteTaskSuccess(action.payload.id));
+  } catch (error) {
+    console.log("Mistake", error);
+    yield put(deleteTaskFail(error));
+  }
+  yield put(hideGlobalLoading());
+}
+
 function* rootSaga() {
   yield takeEvery(taskTypes.FETCH_TASK, watchFetchListTask);
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
   yield takeEvery(taskTypes.UPDATE_TASK, updateTaskSaga);
+  yield takeEvery(taskTypes.DELETE_TASK, deleteTaskSaga);
 }
 
 export default rootSaga;

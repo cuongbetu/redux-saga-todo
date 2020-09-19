@@ -37,6 +37,7 @@ class TaskBoard extends Component {
               index={index}
               tasks={listTaskFiltered}
               onClickEdit={this.onClickEdit}
+              onClickDelete={this.onClickDelete}
             />
           );
         })}
@@ -44,13 +45,6 @@ class TaskBoard extends Component {
     );
     return result;
   }
-
-  // showTaskForm() {
-  //   let result = null;
-  //   let { modalControl } = this.props;
-  //   result = <TaskForm open={modalControl} onClose={this.onCloseForm} />;
-  //   return result;
-  // }
 
   getValue = (e) => {
     const { taskActionCreators } = this.props;
@@ -73,6 +67,14 @@ class TaskBoard extends Component {
     openModal();
     changeTitle("Cập nhật công việc");
     changeContent(<TaskForm />);
+  };
+
+  onClickDelete = (id) => {
+    const { taskActionCreators } = this.props;
+    const { deleteTask } = taskActionCreators;
+    if (window.confirm("Bạn có chắc muốn xóa ?")) {
+      deleteTask(id);
+    }
   };
 
   onOpenForm = () => {

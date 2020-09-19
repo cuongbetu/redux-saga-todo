@@ -10,7 +10,14 @@ import Fab from "@material-ui/core/Fab";
 import styles from "./style";
 class TaskItem extends Component {
   render() {
-    let { index, task, classes, status, onClickEdit } = this.props;
+    let {
+      index,
+      task,
+      classes,
+      status,
+      onClickEdit,
+      onClickDelete,
+    } = this.props;
     return (
       <Card key={index} className={classes.card}>
         <CardContent>
@@ -33,7 +40,12 @@ class TaskItem extends Component {
           >
             <Icon fontSize="small">edit</Icon>
           </Fab>
-          <Fab color="secondary" aria-label="delete" size="small">
+          <Fab
+            color="secondary"
+            aria-label="delete"
+            size="small"
+            onClick={() => onClickDelete(task.id)}
+          >
             <Icon fontSize="small">delete</Icon>
           </Fab>
         </CardActions>

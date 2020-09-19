@@ -19,3 +19,7 @@ export const addTask = (body) => {
 export const editTask = (data, dataID) => {
   return AxiosService.put(`${API_ENDPOINT}${url}/${dataID}`, data);
 };
+
+export const deleteTask = (dataID) => {
+  return AxiosService.delete(`${API_ENDPOINT}${url}/${dataID}`);
+};

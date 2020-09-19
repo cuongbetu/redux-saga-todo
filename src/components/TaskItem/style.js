@@ -7,7 +7,7 @@ const styles = () => ({
   card: {
     marginBottom: 10,
     color: "#212121 ",
-    backgroundColor: "#90CAF9",
+    backgroundColor: "#3498DB",
   },
 });
 

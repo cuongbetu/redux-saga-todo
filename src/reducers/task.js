@@ -35,10 +35,8 @@ const reducer = (state = initialState, action) => {
     case taskContant.ADD_TASK_FAIL:
       toastError("Thêm mới công việc thất bại");
       return state;
-
     case taskContant.EDIT_TASK:
       return { ...state, taskEditing: action.payload.task };
-
     case taskContant.UPDATE_TASK_SUCCESS:
       const { listTask } = state;
       const idEdit = listTask.findIndex(
@@ -51,6 +49,20 @@ const reducer = (state = initialState, action) => {
     case taskContant.UPDATE_TASK_FAIL:
       toastError("Cập nhật công việc thất bại");
       return state;
+    case taskContant.DELETE_TASK_SUCCESS:
+      const listTaskClone = [...state.listTask];
+      const idDelete = listTaskClone.findIndex(
+        (item) => item.id === action.payload.id,
+      );
+      if (idDelete !== -1) {
+        listTaskClone.splice(idDelete, 1);
+      }
+
+      return { ...state, listTask: listTaskClone };
+    case taskContant.DELETE_TASK_FAIL:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
