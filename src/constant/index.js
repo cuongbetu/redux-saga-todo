@@ -1,7 +1,7 @@
 import AdminHomePage from "./../components/AdminHomePage/index";
-import Page404 from "./../components/404Page/index";
 import TaskBoard from "./../containers/TaskBoard/index";
-
+import LoginPage from "./../components/LoginPage/index";
+import SignUpPage from "./../components/SignUpPage/index";
 export const API_ENDPOINT = "http://localhost:3000";
 
 export const STATUSES = [
@@ -27,20 +27,27 @@ export const STATUS_CODE = {
 
 export const ADMIN_ROUTES = [
   {
-    path: "/",
+    path: "/admin",
     name: "Trang quản trị",
     exact: true,
     component: AdminHomePage,
   },
   {
-    path: "/task-board",
+    path: "/admin/task-board",
     name: "Quản lý công việc",
     component: TaskBoard,
   },
+];
+
+export const ROUTES = [
   {
-    path: "/404",
-    name: "Not found",
-    exact: true,
-    component: Page404,
+    path: "/login",
+    name: "Trang đăng nhập",
+    component: LoginPage,
+  },
+  {
+    path: "/sign-up",
+    name: "Trang đăng kí",
+    component: SignUpPage,
   },
 ];

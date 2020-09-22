@@ -1,9 +1,6 @@
 {
   "tasks": [
     {
-      "id": 7
-    },
-    {
       "title": "Trà",
       "description": "Trà đào cam xả",
       "status": 1,
@@ -20,6 +17,13 @@
       "description": "Sinh tố bơ",
       "status": 3,
       "id": 11
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
     }
   ]
 }

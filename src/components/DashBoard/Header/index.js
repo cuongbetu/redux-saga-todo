@@ -10,6 +10,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
 
 const menuId = "primary-search-account-menu";
 
@@ -52,6 +54,13 @@ class Header extends Component {
     this.props.toggleDrawer(value);
   };
 
+  handleLogOut = () => {
+    const { history } = this.props;
+    if (history) {
+      history.push("/login");
+    }
+  };
+
   renderMenu = () => {
     const { anchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
@@ -65,7 +74,7 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Log Out</MenuItem>
+        <MenuItem onClick={this.handleLogOut}>Log Out</MenuItem>
       </Menu>
     );
   };
@@ -149,4 +158,4 @@ class Header extends Component {
   }
 }
 
-export default withStyles(style)(Header);
+export default compose(withStyles(style), withRouter)(Header);

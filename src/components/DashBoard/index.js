@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { compose, bindActionCreators } from "redux";
 import * as uiActions from "./../../actions/ui";
 import cn from "classnames";
+import { Redirect } from "react-router-dom";
+import { ReduxFormContext } from "redux-form";
 
 class DashBoard extends Component {
   toggleDrawer = (value) => {
@@ -14,9 +16,11 @@ class DashBoard extends Component {
     let { toggleSideBar } = uiActionCreators;
     toggleSideBar(value);
   };
-
   render() {
-    const { children, classes, name, isSideBar } = this.props;
+    const { children, classes, name, isSideBar, isLogined } = this.props;
+    if (isLogined === false) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className={classes.dashBoard}>
         <Header
@@ -44,6 +48,7 @@ class DashBoard extends Component {
 const mapStateToProps = (state) => {
   return {
     isSideBar: state.uiReducer.isSideBar,
+    isLogined: state.userReducer.isLogined,
   };
 };
 

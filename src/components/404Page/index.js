@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Page404 extends Component {
   render() {
-    return <div>Page 404</div>;
+    return <h1>Page Not Found</h1>;
   }
 }
 

@@ -8,6 +8,7 @@ import {
 } from "redux-saga/effects";
 import * as taskTypes from "./../constant/task";
 import { getListTask, addTask, editTask, deleteTask } from "./../apis/task";
+import { addUser, getListUsers } from "./../apis/users";
 import {
   fetchListTaskSuccess,
   fetchListTaskFail,
@@ -19,9 +20,16 @@ import {
   deleteTaskSuccess,
   deleteTaskFail,
 } from "./../actions/task";
+import {
+  addUserFail,
+  addUserSuccess,
+  getListUserFail,
+  getListUserSuccess,
+} from "./../actions/users";
 import { showGlobalLoading, hideGlobalLoading } from "./../actions/ui";
 import { hideModal } from "./../actions/modal";
 import { STATUSES } from "../constant";
+import * as userTypes from "./../constant/users";
 
 function* watchFetchListTask(action) {
   yield put(showGlobalLoading());
@@ -92,10 +100,32 @@ function* deleteTaskSaga(action) {
     yield call(deleteTask, action.payload.id);
     yield put(deleteTaskSuccess(action.payload.id));
   } catch (error) {
-    console.log("Mistake", error);
     yield put(deleteTaskFail(error));
   }
   yield put(hideGlobalLoading());
+}
+
+function* addUserSaga(action) {
+  yield put(showGlobalLoading());
+  let { username, password } = action.payload;
+  try {
+    const resp = yield call(addUser, { username, password });
+    yield put(addUserSuccess(resp.data));
+  } catch (error) {
+    yield put(addUserFail(error));
+  }
+  yield delay(1000);
+  yield put(hideGlobalLoading());
+}
+
+function* getListUsersSaga() {
+  try {
+    const resp = yield call(getListUsers);
+    const { data } = resp;
+    yield put(getListUserSuccess(data));
+  } catch (error) {
+    yield put(getListUserFail(error));
+  }
 }
 
 function* rootSaga() {
@@ -104,6 +134,8 @@ function* rootSaga() {
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
   yield takeEvery(taskTypes.UPDATE_TASK, updateTaskSaga);
   yield takeEvery(taskTypes.DELETE_TASK, deleteTaskSaga);
+  yield takeEvery(userTypes.ADD_USER, addUserSaga);
+  yield takeEvery(userTypes.GET_LIST_USER, getListUsersSaga);
 }
 
 export default rootSaga;
