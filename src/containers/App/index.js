@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import styles from "./style";
 import { withStyles } from "@material-ui/core";
@@ -20,7 +20,6 @@ import AdminLayoutRoute from "./../../commons/Layout/AdminLayoutRoute/index";
 import DefaultLayoutRoute from "./../../commons/Layout/DefaultLayoutRoute/index";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Page404 from "./../../components/404Page/index";
-import LoginPage from "./../../components/LoginPage/index";
 
 const store = configureStore();
 class App extends Component {
@@ -64,12 +63,14 @@ class App extends Component {
             <ToastContainer autoClose={3000} />
             <GlobalLoading />
             <MyModal />
-            <Switch>
-              {this.showAdminRoute()}
-              {this.showLoginRoute()}
-              <Redirect exact from="/" to="/login" />
-              <Route component={Page404} />
-            </Switch>
+            <Suspense fallback="I'm loading...">
+              <Switch>
+                {this.showAdminRoute()}
+                {this.showLoginRoute()}
+                <Redirect exact from="/" to="/login" />
+                <Route component={Page404} />
+              </Switch>
+            </Suspense>
             <CssBaseline />
           </ThemeProvider>
         </Router>

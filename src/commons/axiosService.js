@@ -22,6 +22,10 @@ class AxiosServeice {
     return this.instance.post(url, body);
   }
 
+  postLogin(url,body,headers) {
+    return this.instance.post(url,body,headers); 
+  }
+
   put(url, body) {
     return this.instance.put(url, body);
   }

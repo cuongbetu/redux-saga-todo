@@ -21,13 +21,19 @@ const style = () => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    fontSize: 24,
+    color: "#000"
   },
   button: {
     marginTop: 20,
   },
-  sign_up: {
+  sign_up : {
     marginTop: 10,
     textAlign: "center",
+  },
+  sign_up_link: {
+    color: "#000",
+    textDecoration: "none"
   },
 });
 

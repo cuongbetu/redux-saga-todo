@@ -8,7 +8,7 @@ import {
 } from "redux-saga/effects";
 import * as taskTypes from "./../constant/task";
 import { getListTask, addTask, editTask, deleteTask } from "./../apis/task";
-import { addUser, getListUsers } from "./../apis/users";
+import { addUser, login } from "./../apis/users";
 import {
   fetchListTaskSuccess,
   fetchListTaskFail,
@@ -23,12 +23,12 @@ import {
 import {
   addUserFail,
   addUserSuccess,
-  getListUserFail,
-  getListUserSuccess,
+  loginFail,
+  loginSuccess,
 } from "./../actions/users";
 import { showGlobalLoading, hideGlobalLoading } from "./../actions/ui";
 import { hideModal } from "./../actions/modal";
-import { STATUSES } from "../constant";
+import { STATUSES,STATUS_CODE } from "../constant";
 import * as userTypes from "./../constant/users";
 
 function* watchFetchListTask(action) {
@@ -118,13 +118,26 @@ function* addUserSaga(action) {
   yield put(hideGlobalLoading());
 }
 
-function* getListUsersSaga() {
-  try {
-    const resp = yield call(getListUsers);
-    const { data } = resp;
-    yield put(getListUserSuccess(data));
-  } catch (error) {
-    yield put(getListUserFail(error));
+function*  loginSaga(action) {
+  let {data} = action.payload;
+  yield put (showGlobalLoading());
+  try{
+    var resp = yield call(login,data);
+    if(resp.data.status === "200")
+    {
+      yield put(loginSuccess(resp.data));
+    }
+    else
+    {
+      yield put(loginFail(resp.data.message));
+    }
+    yield delay(200);
+    yield put(hideGlobalLoading());
+  }
+  catch(error)
+  {
+    yield put(loginFail(error.message))
+    yield put(hideGlobalLoading());
   }
 }
 
@@ -135,7 +148,7 @@ function* rootSaga() {
   yield takeEvery(taskTypes.UPDATE_TASK, updateTaskSaga);
   yield takeEvery(taskTypes.DELETE_TASK, deleteTaskSaga);
   yield takeEvery(userTypes.ADD_USER, addUserSaga);
-  yield takeEvery(userTypes.GET_LIST_USER, getListUsersSaga);
+  yield takeEvery(userTypes.LOG_IN, loginSaga);
 }
 
 export default rootSaga;

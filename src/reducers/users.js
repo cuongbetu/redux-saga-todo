@@ -33,12 +33,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case userTypes.LOG_IN:
+    case userTypes.LOG_IN_SUCCESS:
+      toast.success("Đăng nhập thành công"); 
+      localStorage.setItem('user',JSON.stringify(action.payload.data.data));
       return {
         ...state,
         isLogined: true,
       };
+    case userTypes.LOG_IN_FAIL:
+      toast.error(action.payload.message);
+      return {
+        ...state,
+        isLogined : false
+      }
     case userTypes.LOG_OUT:
+      localStorage.removeItem('user');
       return {
         ...state,
         isLogined: false,

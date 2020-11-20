@@ -7,9 +7,8 @@ const validate = (values) => {
       error.username = " Bạn nhập quá kí tự cho phép !";
     }
   }
-
   if (!values.password) {
-    error.password = "Mật khẩu không được để trống";
+    error.password = "Vui lòng nhập mật khẩu";
   }
 
   return error;

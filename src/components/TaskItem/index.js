@@ -8,6 +8,7 @@ import Icon from "@material-ui/core/Icon";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import styles from "./style";
+
 class TaskItem extends Component {
   render() {
     let {

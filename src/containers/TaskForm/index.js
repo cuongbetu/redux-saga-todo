@@ -83,7 +83,6 @@ class TaskForm extends Component {
           <Grid item md={12} className={classes.selectStatus}>
             {this.showSelectStatusField()}
           </Grid>
-
           <Grid item md={12}>
             <Button
               variant="contained"

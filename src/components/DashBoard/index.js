@@ -8,7 +8,6 @@ import { compose, bindActionCreators } from "redux";
 import * as uiActions from "./../../actions/ui";
 import cn from "classnames";
 import { Redirect } from "react-router-dom";
-import { ReduxFormContext } from "redux-form";
 
 class DashBoard extends Component {
   toggleDrawer = (value) => {
@@ -16,9 +15,12 @@ class DashBoard extends Component {
     let { toggleSideBar } = uiActionCreators;
     toggleSideBar(value);
   };
+
   render() {
-    const { children, classes, name, isSideBar, isLogined } = this.props;
-    if (isLogined === false) {
+    const { children, classes, name, isSideBar } = this.props;
+    const {isLogined} = this.props;
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (isLogined === false && !user) {
       return <Redirect to="/" />;
     }
     return (

@@ -1,22 +1,10 @@
 {
   "tasks": [
     {
-      "title": "Trà",
-      "description": "Trà đào cam xả",
-      "status": 1,
-      "id": 8
-    },
-    {
-      "title": "Cafe",
-      "description": "Capuchino",
+      "title": "Học lập trình ",
+      "description": "Học ReactJS Easy Front-end",
       "status": 2,
-      "id": 10
-    },
-    {
-      "title": "Sinh tố",
-      "description": "Sinh tố bơ",
-      "status": 3,
-      "id": 11
+      "id": 1
     }
   ],
   "users": [
@@ -24,6 +12,31 @@
       "id": 1,
       "username": "admin",
       "password": "admin"
+    },
+    {
+      "username": "11",
+      "password": "11",
+      "id": 2
+    },
+    {
+      "username": "sss",
+      "password": "sss",
+      "id": 3
+    },
+    {
+      "username": "sss",
+      "password": "sss",
+      "id": 4
+    },
+    {
+      "username": "ssss",
+      "password": "ssss",
+      "id": 5
+    },
+    {
+      "username": "zzxx",
+      "password": "123",
+      "id": 6
     }
   ]
 }

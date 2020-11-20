@@ -2,7 +2,11 @@ import AdminHomePage from "./../components/AdminHomePage/index";
 import TaskBoard from "./../containers/TaskBoard/index";
 import LoginPage from "./../components/LoginPage/index";
 import SignUpPage from "./../components/SignUpPage/index";
-export const API_ENDPOINT = "http://localhost:3000";
+
+
+export const API_ENDPOINT_TASK = "http://localhost:3000";
+
+export const API_ENDPOINT_LOGIN = "http://localhost:64880/user-manager/login";
 
 export const STATUSES = [
   {
@@ -51,3 +55,10 @@ export const ROUTES = [
     component: SignUpPage,
   },
 ];
+
+export const HEADER = {
+  headers : {
+    "SecretKey": "RecruitManager@1234",
+    "Content-Type": "application/json"
+  }
+};

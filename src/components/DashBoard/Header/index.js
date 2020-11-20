@@ -10,8 +10,10 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import { compose } from "redux";
-import { withRouter } from "react-router-dom";
+import { compose,bindActionCreators } from "redux";
+import {connect} from 'react-redux';
+import { Redirect, withRouter } from "react-router-dom";
+import * as userActions from '../../../actions/users';
 
 const menuId = "primary-search-account-menu";
 
@@ -25,6 +27,15 @@ class Header extends Component {
       mobileMoreAnchorEl: null,
     };
   }
+
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps)
+  //   const user = JSON.parse(localStorage.getItem('user'));
+  //   if(!user)
+  //   {
+  //     return <Redirect to="/login" />
+  //   }
+  // }
 
   handleMobileMenuClose = () => {
     this.setState({
@@ -55,10 +66,10 @@ class Header extends Component {
   };
 
   handleLogOut = () => {
-    const { history } = this.props;
-    if (history) {
-      history.push("/login");
-    }
+    const {userAction} = this.props;
+    const {logout} = userAction;
+    logout();
+
   };
 
   renderMenu = () => {
@@ -109,6 +120,7 @@ class Header extends Component {
 
   render() {
     const { classes, name, isSideBar } = this.props;
+    
     return (
       <div className={classes.grow}>
         <AppBar position="static">
@@ -158,4 +170,18 @@ class Header extends Component {
   }
 }
 
-export default compose(withStyles(style), withRouter)(Header);
+const mapStateToProps = (state) => {
+  return {
+    isLogined : state.userReducer.isLogined
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    userAction: bindActionCreators(userActions, dispatch),
+  };
+};
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withStyles(style), withRouter,withConnect)(Header);

@@ -52,13 +52,34 @@ export const addUserFail = (err) => {
   };
 };
 
-export const logInSuccess = () => {
+export const login = (data) => {
   return {
     type: userTypes.LOG_IN,
+    payload: {
+      data,
+    },
   };
 };
 
-export const logInFail = () => {
+export const loginSuccess = (data) => {
+  return {
+    type: userTypes.LOG_IN_SUCCESS,
+    payload: {
+      data,
+    },
+  };
+};
+
+export const loginFail = (message) => {
+  return {
+    type: userTypes.LOG_IN_FAIL,
+    payload: {
+      message,
+    },
+  };
+};
+
+export const logout = () => {
   return {
     type: userTypes.LOG_OUT,
   };
